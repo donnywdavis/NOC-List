@@ -19,8 +19,11 @@
 //
 // 18. We need properties for the other two labels here so we can reference them in code.
 //
+@property (weak, nonatomic) IBOutlet UILabel *realNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accessLevelLabel;
 
 // Why is this here?
+//  It defines the method configureView to be used within this class but is not available publicly.
 - (void)configureView;
 
 @end
@@ -43,6 +46,7 @@
 - (void)configureView
 {
     // What is being checked here?
+    //  We are checking if the agent object is populated with data and is not nil.
     if (self.agent)
     {
         //
@@ -52,13 +56,16 @@
         //
         //     (hint: We did something similar to this in HW 1)
         //
-        
+        NSString *agentName = self.agent.coverName;
+        NSArray *arrayWithAgentName = [agentName componentsSeparatedByString:@" "];
+        NSString *agentLastName = [arrayWithAgentName lastObject];
         
         
         //
         // 20. Once we have the last name of the agent from the code above, how do we set the view's title to the right
         //     string?
         //
+        self.title = [NSString stringWithFormat:@"Agent %@", agentLastName];
         
         
         
@@ -69,8 +76,9 @@
         //     to read "Level #". How do we do that?
         //
 
-        
-        
+        self.realNameLabel.text = [NSString stringWithFormat:@"Real Name: %@", self.agent.realName];
+        self.coverNameLabel.text = [NSString stringWithFormat:@"Cover Name: %@", self.agent.coverName];
+        self.accessLevelLabel.text = [NSString stringWithFormat:@"Level # %i", (int)self.agent.accessLevel];
         
     }
 }
@@ -78,13 +86,14 @@
 - (void)viewDidLoad
 {
     // What does this do?
+    //  This calls viewDidLoad from NSObject to perform any default operations.
     [super viewDidLoad];
     
     //
     // 22. We need to make sure to call the configureView method so the detail view will be populated with the agent's data.
     //     How do we do that?
     //
-    
+    [self configureView];
     
 }
 

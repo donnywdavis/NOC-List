@@ -10,4 +10,6 @@
 
 @interface MasterViewController : UITableViewController
 
+- (void)loadNocList;
+
 @end
