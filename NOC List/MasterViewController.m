@@ -58,8 +58,8 @@
     //    Use the "agents" array from above as the array to iterate over. Create an NSDictionary object on the left side
     //    of the for-in loop. You will use this inside the for loop to create an Agent object.
     
-    for (NSDictionary *agentsDictionary in agents) {
-        [self.agents addObject:[Agent agentWithDictionary:agentsDictionary]];
+    for (NSDictionary *agentDictionary in agents) {
+        [self.agents addObject:[Agent agentWithDictionary:agentDictionary]];
     }
 
     
